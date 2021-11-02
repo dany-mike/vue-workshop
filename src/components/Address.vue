@@ -1,6 +1,7 @@
 <template>
   <div class="hello">
-
+      <p><span>Paris</span>: {{ postalCode }}</p>
+      <button @click="handleReturn">Retour</button>
   </div>
 </template>
 
@@ -8,6 +9,15 @@
 export default {
   name: 'Address',
   props: {
+      postalCode: {
+          type: Number,
+          required: true
+      }
+  },
+  methods: {
+      handleReturn () {
+          this.$emit('on-return')
+      }
   }
 }
 </script>
