@@ -1,5 +1,5 @@
 <template>
-  <div class="hello">
+  <div class="address">
       <p><span>Paris</span>: {{ postalCode }}</p>
       <button @click="handleReturn">Retour</button>
   </div>
@@ -11,7 +11,7 @@ export default {
   props: {
       postalCode: {
           type: Number,
-          required: true
+          default: 0
       }
   },
   methods: {

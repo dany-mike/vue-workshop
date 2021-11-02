@@ -8,11 +8,19 @@
             v-model="postalCode"
             >
             {{ postalCode }}
+             <button 
+                v-if="!isShowAddressCta"
+                class="button"
+                @click="addAddress"
+            >
+                Submit
+            </button>
             <button 
+                v-if="isShowAddressCta"
                 class="button"
                 @click="showAddressToggle"
             >
-                Submit
+                Show address
             </button>
         </div> 
         <Address
@@ -34,13 +42,26 @@ export default {
   data () {
       return {
           postalCode: null,
-          isAddressActive: false
+          isAddressActive: false,
       }
   },
+  computed: {
+    isShowAddressCta () {
+        return this.postalCode === localStorage.getItem('address') ? true : false
+    }
+  },
   methods: {
-      showAddressToggle () {
+      addAddress () {
+          localStorage.removeItem('address')
+          localStorage.setItem('address', this.postalCode)
+          this.isAddressActive = !this.isAddressActive
+      },
+       showAddressToggle () {
           this.isAddressActive = !this.isAddressActive
       }
+  },
+  mounted () {
+      this.postalCode = localStorage.getItem('address')
   }
 }
 </script>
