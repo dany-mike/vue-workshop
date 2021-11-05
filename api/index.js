@@ -8,9 +8,9 @@ app.get('/', (req, res) => {
   res.send('Root endpoint')
 })
 
-const citiesRoute = require('./routes/cities.route');
+const cityRoute = require('./routes/cities.route');
 
-app.use('/cities', citiesRoute);
+app.use('/city', cityRoute);
 
 app.listen(port, () => {
   console.log(`Example app listening at http://localhost:${port}`)

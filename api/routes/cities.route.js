@@ -1,10 +1,7 @@
 const router = require('express').Router();
 
-const { getCities, getCityByPostalCode } = require('../controllers/cities.controller.js');
-const serialization = require('../middlewares/serialization.middleware.js');
+const { getCityByPostalCode } = require('../controllers/city.controller.js');
 
-router.get('/', getCities, serialization);
-
-router.get('/:id', getCityByPostalCode, serialization);
+router.get('/', getCityByPostalCode);
 
 module.exports = router;
