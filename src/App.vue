@@ -1,13 +1,16 @@
 <template>
+    <OHeader />
     <Modal />
 </template>
 
 <script>
-import Modal from './components/Modal.vue'
+import Modal from './components/molecules/m-modal.vue';
+import OHeader from './components/organisms/o-header.vue';
 
 export default {
   name: 'App',
   components: {
+    OHeader,
     Modal
   }
 }

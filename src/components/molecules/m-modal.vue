@@ -7,7 +7,6 @@
             placeholder="Your postal code"
             v-model="postalCode"
             >
-            {{ postalCode }}
              <button 
                 v-if="!isShowAddressCta"
                 class="button"
@@ -32,10 +31,10 @@
 </template>
 
 <script>
-import Address from '../components/Address.vue'
+import Address from '../atoms/a-address.vue'
 
 export default {
-  name: 'Modal',
+  name: 'MModal',
   components: {
       Address
   },
@@ -52,7 +51,6 @@ export default {
   },
   methods: {
       addAddress () {
-          localStorage.removeItem('address')
           localStorage.setItem('address', this.postalCode)
           this.isAddressActive = !this.isAddressActive
       },

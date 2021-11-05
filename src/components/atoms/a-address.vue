@@ -7,7 +7,7 @@
 
 <script>
 export default {
-  name: 'Address',
+  name: 'AAddress',
   props: {
       postalCode: {
           type: Number,
