@@ -1,14 +1,14 @@
 <template>
     <div class="modal flex items-center justify-center">
-        <div v-if="!isPostalCodeActive">
-              <input 
-            type="number" 
-            class="postal-code" 
-            placeholder="Your postal code"
-            v-model="postalCode"
+        <div v-if="!isPostalCodeActive" class="flex space-x-2">
+            <input 
+                type="number" 
+                class="postal-code bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-500" 
+                placeholder="Your postal code"
+                v-model="postalCode"
             >
-             <button 
-                class="button"
+             <button
+                class="py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none"
                 @click="addPostalCode"
             >
                 Submit
@@ -52,31 +52,4 @@ export default {
 </script>
 
 <style scoped>
-    .modal {
-        border: 1px solid black;
-        height: 80vh;
-    }
-
-    .postal-code {
-        margin: 0 0.5rem 0 0.5rem;
-        width: 50%;
-        height: 5%;
-        padding: 0;
-    }
-
-    .flex {
-        display: flex;
-    }
-
-    .button {
-        height: 5%;
-    }
-
-    .items-center {
-        align-items: center;
-    }
-
-    .justify-center {
-        justify-content: center;
-    }
 </style>
