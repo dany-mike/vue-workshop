@@ -1,6 +1,6 @@
 <template>
     <div class="modal flex items-center justify-center">
-        <div v-if="!isAddressActive">
+        <div v-if="!isPostalCodeActive">
               <input 
             type="number" 
             class="postal-code" 
@@ -8,54 +8,41 @@
             v-model="postalCode"
             >
              <button 
-                v-if="!isShowAddressCta"
                 class="button"
-                @click="addAddress"
+                @click="addPostalCode"
             >
                 Submit
             </button>
-            <button 
-                v-if="isShowAddressCta"
-                class="button"
-                @click="showAddressToggle"
-            >
-                Show address
-            </button>
         </div> 
-        <Address
-            v-if="isAddressActive"
+        <APostalCode
+            v-if="isPostalCodeActive"
             :postalCode="postalCode"
-            @on-return="showAddressToggle"
+            @on-return="togglePostalCode"
         />
     </div>
 </template>
 
 <script>
-import Address from '../atoms/a-address.vue'
+import APostalCode from '../atoms/a-postal-code.vue'
 
 export default {
   name: 'MModal',
   components: {
-      Address
+      APostalCode
   },
   data () {
       return {
           postalCode: null,
-          isAddressActive: false,
+          isPostalCodeActive: false,
       }
   },
-  computed: {
-    isShowAddressCta () {
-        return this.postalCode === localStorage.getItem('address') ? true : false
-    }
-  },
   methods: {
-      addAddress () {
+      addPostalCode () {
           localStorage.setItem('address', this.postalCode)
-          this.isAddressActive = !this.isAddressActive
+          this.isPostalCodeActive = !this.isPostalCodeActive
       },
-       showAddressToggle () {
-          this.isAddressActive = !this.isAddressActive
+       togglePostalCode () {
+          this.isPostalCodeActive = !this.isPostalCodeActive
       }
   },
   mounted () {

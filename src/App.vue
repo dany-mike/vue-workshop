@@ -1,17 +1,17 @@
 <template>
     <OHeader />
-    <Modal />
+    <MPostalCodeForm />
 </template>
 
 <script>
-import Modal from './components/molecules/m-modal.vue';
+import MPostalCodeForm from './components/molecules/m-postal-code-form.vue';
 import OHeader from './components/organisms/o-header.vue';
 
 export default {
   name: 'App',
   components: {
     OHeader,
-    Modal
+    MPostalCodeForm
   }
 }
 </script>
