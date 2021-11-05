@@ -1,6 +1,6 @@
 <template>
     <div>
-      <p>My header</p>
+      <p class="text-xl">My header</p>
     </div>
 </template>
 
