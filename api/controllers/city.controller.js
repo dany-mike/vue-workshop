@@ -8,11 +8,11 @@ const cityController = {
       if (err) {
         throw err;
       }
-      const rawPostalCodes = JSON.parse(postalCodes)
+      const parsedPostalCodes = JSON.parse(postalCodes);
 
-      const postalCode = req.body.postalCode
+      const filteredPostalCode = Object.fromEntries(Object.entries(parsedPostalCodes).filter(([key]) => key.includes(req.body.postalCode)));
 
-      res.json(rawPostalCodes[postalCode])
+      res.json(filteredPostalCode);
     });
 
   }
