@@ -7,28 +7,30 @@
                 placeholder="Your postal code"
                 v-model="postalCode"
             >
-             <button
-                class="py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none"
-                @click="addPostalCode"
+            <router-link to="/foo">Go to Foo</router-link>
+             <AButton
+                class="bg-red-500 hover:bg-red-700"
+                @click="test"
+                :to="'/postal-codes'"
             >
                 Submit
-            </button>
+            </AButton>
         </div> 
-        <APostalCode
+        <!-- <APostalCode
             v-if="isPostalCodeActive"
             :postalCode="postalCode"
             @on-return="togglePostalCode"
-        />
+        /> -->
     </div>
 </template>
 
 <script>
-import APostalCode from '../atoms/a-postal-code.vue'
+import AButton from '../atoms/a-button.vue'
 
 export default {
   name: 'MModal',
   components: {
-      APostalCode
+      AButton
   },
   data () {
       return {
@@ -37,10 +39,6 @@ export default {
       }
   },
   methods: {
-      addPostalCode () {
-          localStorage.setItem('address', this.postalCode)
-          this.isPostalCodeActive = !this.isPostalCodeActive
-      },
        togglePostalCode () {
           this.isPostalCodeActive = !this.isPostalCodeActive
       }
