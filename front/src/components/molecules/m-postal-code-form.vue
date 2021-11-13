@@ -8,7 +8,6 @@
                 v-model="postalCode"
             >
             <AButton
-                class="bg-red-500 hover:bg-red-700"
             >
                 Submit
             </AButton>
