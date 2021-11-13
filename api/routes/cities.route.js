@@ -2,6 +2,6 @@ const router = require('express').Router();
 
 const { getCityByPostalCode } = require('../controllers/city.controller.js');
 
-router.get('/', getCityByPostalCode);
+router.post('/', getCityByPostalCode);
 
 module.exports = router;
