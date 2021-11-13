@@ -1,7 +1,9 @@
 <template>
-    <component :is="type" :href="href" class="py-2 px-4  text-white font-semibold  shadow-md focus:outline-none bg-red-500 hover:bg-red-700 rounded">
-      <slot/>
-    </component>
+    <div class="a-button">
+      <component :is="type" :href="href" class="py-2 px-4  text-white font-semibold  shadow-md focus:outline-none bg-red-500 hover:bg-red-700 rounded">
+        <slot/>
+      </component>
+    </div>
 </template>
 
 <script>
@@ -10,11 +12,11 @@ export default {
   props: {
     href: {
       type: String,
-      default: '/'
+      require: false
     },
     to: {
       type: String,
-      default: '/'
+      require: false
     }
   },
   computed: {
