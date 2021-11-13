@@ -1,22 +1,35 @@
 <template>
-  <div class="address">
-      <p><span>Paris</span>: {{ postalCode }}</p>
+  <div class="a-select-city">
+      <p>{{ postalCode }}</p>
+      <p>{{country}}</p>
+     <ul>
+       <li 
+       v-for="(country, index) in countries"
+       :key="index"
+       >
+       {{ country }}
+       </li>
+     </ul>      
       <button 
       @click="handleReturn"
       class="py-2 px-4 bg-red-500 text-white font-semibold rounded-lg shadow-md hover:bg-red-700 focus:outline-none"
       >
       Retour
-      </button>
+    </button>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'AAddress',
+  name: 'ASelectCity',
   props: {
       postalCode: {
-          type: Number,
-          default: 0
+          type: String,
+          default: ''
+      },
+      cities: {
+        type: Array,
+        default: () => []
       }
   },
   methods: {
@@ -25,6 +38,7 @@ export default {
       }
   }
 }
+
 </script>
 
 <!-- Add "scoped" attribute to limit CSS to this component only -->
