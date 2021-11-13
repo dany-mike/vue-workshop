@@ -1,6 +1,6 @@
 <template>
-  <div class="a-welcome">
-    <h1>{{ msg }}</h1>
+  <div class="a-welcome py-8">
+    <h1 class="text-4xl">{{ msg }}</h1>
   </div>
 </template>
 

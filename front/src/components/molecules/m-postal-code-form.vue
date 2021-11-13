@@ -49,8 +49,8 @@ export default {
   },
   methods: {
     submitPostalCode () {
-      localStorage.setItem('address', this.postalCode)
       this.$store.dispatch("getCitiesByPostalCode", this.postalCode);
+      localStorage.setItem('address', this.postalCode)
       this.togglePostalCode()
     },
     togglePostalCode () {
@@ -59,7 +59,6 @@ export default {
   },
   mounted () {
       this.postalCode = localStorage.getItem('address')
-      // this.$store.dispatch("getCitiesByPostalCode", this.postalCode);
   }
 }
 </script>
