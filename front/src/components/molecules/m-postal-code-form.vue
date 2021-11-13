@@ -16,6 +16,7 @@
         <div v-if="!showPostalCodeForm">
           <APostalCode
             :postalCode="postalCode"
+            :cities="getCitiesByPostalCode"
             @on-back="togglePostalCode"
           />
         </div> 
@@ -25,6 +26,8 @@
 <script>
 import AButton from '@/components/atoms/a-button.vue'
 import APostalCode from '@/components/atoms/a-postal-code.vue'
+import { mapGetters } from 'vuex'
+
 
 export default {
   name: 'MPostalCodeForm',
@@ -39,9 +42,15 @@ export default {
           showPostalCodeForm: true
       }
   },
+  computed: {
+    ...mapGetters({
+      getCitiesByPostalCode: 'getCities'
+    })
+  },
   methods: {
     submitPostalCode () {
       localStorage.setItem('address', this.postalCode)
+      this.$store.dispatch("getCitiesByPostalCode", this.postalCode);
       this.togglePostalCode()
     },
     togglePostalCode () {
@@ -50,6 +59,7 @@ export default {
   },
   mounted () {
       this.postalCode = localStorage.getItem('address')
+      // this.$store.dispatch("getCitiesByPostalCode", this.postalCode);
   }
 }
 </script>

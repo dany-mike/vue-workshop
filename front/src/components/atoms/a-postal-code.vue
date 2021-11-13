@@ -1,10 +1,18 @@
 <template>
-  <div class="m-postal">
-    <h1>{{ postalCode }}</h1>
+  <div class="m-postal flex items-center space-x-8">
+    <p>Postal code: {{ postalCode }}</p>
     <!-- <ASelect
       :cities="cities"
     >
     </ASelect> -->
+    <ul>
+      <li 
+      v-for="(city, index) in cities"
+      :key="`${index}_city`"
+      >
+      {{city}}
+      </li>
+    </ul>
     <AButton
       @click.native="handleBack"
     >
