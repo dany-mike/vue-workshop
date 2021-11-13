@@ -1,4 +1,4 @@
-# vue-workshop
+# front
 
 ## Project setup
 ```
