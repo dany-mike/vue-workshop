@@ -1,12 +1,21 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <div id="header">
+        <OHeader />
     </div>
     <router-view/>
   </div>
 </template>
+
+<script>
+import OHeader from '@/components/organisms/o-header.vue'
+
+export default {
+   components: {
+    OHeader
+  }
+}
+</script>
 
 <style>
 #app {
