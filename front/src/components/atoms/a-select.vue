@@ -1,17 +1,13 @@
 <template>
   <select 
-    @change="setActiveCity"
-    v-model="selected"
     class="a-select py-2 text-white font-semibold  shadow-md focus:outline-none bg-red-500 hover:bg-red-700 rounded"
   >
-    <option>{{ selected }}</option>
+    <option>Please select a city</option>
     <option
       v-for="(option, index) in options"
       :key="`${option}_${index}`"
     >
-    <div v-if="option !== selected">
-      {{option}}
-    </div>
+    {{option}}
     </option>
   </select>
 </template>
@@ -32,17 +28,9 @@ export default {
   },
   data() {
     return {
-      selected: 'Active city'
+      selected: ''
     };
   },
-  methods: {
-    setActiveCity () {
-      this.$emit('set-active-city', this.selected)
-    }
-  },
-  created () {
-    this.$emit('set-active-city', this.selected)
-  }
 }
 
 </script>

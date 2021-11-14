@@ -6,11 +6,11 @@ export const state = {
 
 export const actions = {
   getCitiesByPostalCode({ commit }, postalCode) {
-    axios.post("http://localhost:3000/cities", {
+    return axios.post("http://localhost:3000/cities", {
       postalCode
     }).then((response) => {
       commit("GET_CITIES", response.data);
-    });
+    }).catch(err => console.log(err));
   },
 };
 
@@ -21,7 +21,7 @@ export const mutations = {
 };
 
 const getters = {
-  // getcities
+  // getCities
   getCities: (state) => state.cities,
 };
 
@@ -31,4 +31,3 @@ export default {
   mutations,
   getters,
 };
-

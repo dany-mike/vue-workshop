@@ -6,7 +6,6 @@
         <ASelect
           :options="cities"
           :default="'Please choose a city'"
-          @set-active-city="setActiveCity"
         />
         <AButton
           @click.native="handleBack"
@@ -14,7 +13,6 @@
           Back
         </AButton>
       </div>
-      <p class="text-lg font-semibold">Active city: {{ activeCity }}</p>
     </div>
     <div v-else>
       Sorry we did not find any city with this postal code      
@@ -39,11 +37,6 @@ export default {
       AButton,
       ASelect
   },
-  data() {
-    return {
-      activeCity: null
-    }
-  },
   props: {
       postalCode: {
           type: String,
@@ -58,9 +51,6 @@ export default {
       handleBack () {
           this.$emit('on-back')
       },
-      setActiveCity (activeCity) {
-        this.activeCity = activeCity
-      }
   }
 }
 </script>
