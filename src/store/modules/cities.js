@@ -6,7 +6,7 @@ export const state = {
 
 export const actions = {
   getCitiesByPostalCode({ commit }, postalCode) {
-    return axios.post("http://localhost:3000/cities", {
+    return axios.post(`${process.env.VUE_API_BASE_URL}/cities`, {
       postalCode
     }).then((response) => {
       commit("GET_CITIES", response.data);
