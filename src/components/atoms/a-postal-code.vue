@@ -1,5 +1,5 @@
 <template>
-  <div class="m-postal">
+  <div class="m-postal flex justify-center items-center w-full">
     <div v-if="cities.length !== 0">
       <div class="flex items-center space-x-6">
         <p>Postal code: {{ postalCode }}</p>
