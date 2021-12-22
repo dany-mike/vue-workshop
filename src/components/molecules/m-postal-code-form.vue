@@ -33,15 +33,31 @@ export default {
   },
   computed: {
     ...mapGetters({
-      getCitiesByPostalCode: 'getCities'
+      getCitiesByPostalCode: 'getCities',
+      getWeatherByCity: 'getWeatherByCity',
+      getForecastByCity: 'getForecastByCityName',
+      getDailyForecast: 'getDailyForecast'
     })
   },
   methods: {
     async submitPostalCode () {
       await this.$store.dispatch("getCitiesByPostalCode", this.postalCode);
-      localStorage.setItem('address', {postalCode: this.postalCode, cities: this.getCitiesByPostalCode})
-      this.$emit('on-submit-postal-code', {postalCode: this.postalCode, cities: this.getCitiesByPostalCode})
-      this.togglePostalCode()
+      await this.$store.dispatch("getCurrentWeatherByCityName", this.getCitiesByPostalCode[0]);
+      await this.$store.dispatch("getForecastByCityName", this.getCitiesByPostalCode[0]);
+      console.log(this.getCitiesByPostalCode[0]);
+      await this.$store.dispatch("getDailyForecastByCityNameAndTime", {
+        city:  this.getCitiesByPostalCode[0],
+        time: '12:00',
+      });
+      localStorage.setItem('address', {postalCode: this.postalCode, cities: this.getCitiesByPostalCode});
+      this.$emit('on-submit-postal-code', {
+        postalCode: this.postalCode,
+        cities: this.getCitiesByPostalCode,
+        weather: this.getWeatherByCity,
+        forecast: this.getForecastByCity,
+        formattedForecast: this.getDailyForecast
+      });
+      this.togglePostalCode();
     },
     togglePostalCode () {
       this.showPostalCodeForm = !this.showPostalCodeForm
