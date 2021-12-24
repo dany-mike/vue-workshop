@@ -18,7 +18,7 @@
             </AButton>
           </div>
       </div>
-      <div class="flex w-full justify-center">
+      <div class="flex w-full justify-center items-center space-x-8">
         <div class="max-w-xs rounded overflow-hidden shadow-lg my-2">
           <div class="flex justify-center">
             <img class="w-1/4" :src="`http://openweathermap.org/img/w/${currentWeather.weather[0].icon}.png`" alt="Sunset in the mountains">
@@ -33,6 +33,12 @@
                 Wind pace {{ currentWeather.wind.speed }}
               </p>
             </div>
+        </div>
+        <div class="rounded shadow-lg my-2">
+          <p class="font-bold text-xl p-4">Hourly forecast in {{ currentWeather.name }}</p>
+          <div class="chart-container flex justify-center w-full">
+            <hourly-forecast :data="chartData" :options="chartOptions" />
+          </div>
         </div>
       </div>
     </div>
@@ -49,12 +55,14 @@
 <script>
 import AButton from '@/components/atoms/a-button.vue'
 import ASelect from '@/components/atoms/a-select.vue'
+import HourlyForecast from '@/charts/HourlyForecast.vue'
 
 export default {
   name: 'APostalCode',
   components: {
       AButton,
-      ASelect
+      ASelect,
+      HourlyForecast
   },
   props: {
       postalCode: {
@@ -82,9 +90,50 @@ export default {
       handleBack () {
           this.$emit('on-back')
       },
+  },
+  data() {
+      return {
+        chartData: {
+          labels: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
+          datasets: [
+            {
+              label: 'GitHub Commits',
+              backgroundColor: '#f87979',
+              data: [40, 20, 12, 39, 10, 40, 39, 80, 40, 20, 12, 11]
+            }
+          ]
+        },
+        chartOptions: {
+          responsive: true,
+          legend: {
+            display: false,
+          },
+          tooltips: {
+            titleFontSize: 20,
+            bodyFontSize: 25,
+          },
+          scales: {
+            xAxes: [],
+            yAxes: [
+              {
+                ticks: {
+                  beginAtZero: false,
+                },
+              },
+            ],
+          },
+        },
+      }
   }
 }
 </script>
 
 <style scoped>
+.chart-container {
+  max-height: 800px;
+}
+
+.chartjs-render-monitor {
+  padding: 20px;
+}
 </style>
