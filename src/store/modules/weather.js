@@ -18,8 +18,6 @@ export const actions = {
     }).catch(err => console.log(err));
   },
   getDailyForecastByCityNameAndTime({ commit }, { city, time }) {
-    console.log(city)
-    console.log(time)
     return axios.get(`${process.env.VUE_APP_API_BASE_URL}/weather/forecast/daily/${city}/${time}`).then((response) => {
       commit("GET_WEATHER_FORECAST_BY_TIME", response.data);
     }).catch(err => console.log(err));

@@ -50,7 +50,8 @@ export default {
         time: '12:00',
       });
       localStorage.setItem('address', {postalCode: this.postalCode, cities: this.getCitiesByPostalCode});
-      this.$emit('on-submit-postal-code', {
+      // filename::event-name
+      this.$emit('postal-code-form::on-submit-postal-code', {
         postalCode: this.postalCode,
         cities: this.getCitiesByPostalCode,
         weather: this.getWeatherByCity,
