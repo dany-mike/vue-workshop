@@ -20,7 +20,6 @@
 import AButton from '@/components/atoms/a-button.vue'
 import { mapGetters } from 'vuex'
 
-
 export default {
   name: 'MPostalCodeForm',
   components: {
@@ -49,9 +48,8 @@ export default {
         city:  this.getCitiesByPostalCode[0],
         time: '12:00',
       });
-      localStorage.setItem('address', {postalCode: this.postalCode, cities: this.getCitiesByPostalCode});
       // filename::event-name
-      this.$emit('postal-code-form::on-submit-postal-code', {
+      this.$emit('m-postal-code-form::on-submit-postal-code', {
         postalCode: this.postalCode,
         cities: this.getCitiesByPostalCode,
         weather: this.getWeatherByCity,
@@ -63,9 +61,6 @@ export default {
     togglePostalCode () {
       this.showPostalCodeForm = !this.showPostalCodeForm
     }
-  },
-  mounted () {
-      this.postalCode = localStorage.getItem('address')
   }
 }
 </script>

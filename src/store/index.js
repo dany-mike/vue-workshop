@@ -1,8 +1,8 @@
 import Vue from "vue";
 import Vuex from "vuex";
 
-import cities from "./modules/cities";
-import weather from "./modules/weather";
+import cities from "./modules/cities/store";
+import weather from "./modules/weather/store";
 
 Vue.use(Vuex);
 
