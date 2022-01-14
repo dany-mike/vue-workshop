@@ -3,7 +3,7 @@
     <AWelcome msg="Welcome to vue workshop"/>
     <MPostalCodeForm 
       v-if="showPostalCodeForm"
-      @on-submit-postal-code="setPostalCodeData"
+      @m-postal-code-form::on-submit-postal-code="setPostalCodeData"
     />
     <APostalCode
       v-if="!showPostalCodeForm"
