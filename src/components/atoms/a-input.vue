@@ -7,10 +7,10 @@
     </label>
       <input
         class="postal-code bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-500" 
-        type="text"
-        :name="name" 
-        :value="value" 
-        @input="onInput" 
+        :type="type"
+        :name="name"
+        :value="value"
+        @input="onInput"
       />
       <p 
         class="valid"
@@ -33,6 +33,10 @@ export default {
     label: {
       type: String,
       default: ''
+    },
+    type: {
+      type: String,
+      required: true
     },
     value: {
       type: String,
