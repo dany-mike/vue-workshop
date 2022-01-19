@@ -1,14 +1,16 @@
 <template>
     <div class="modal flex items-center justify-center">
         <div
-          class="flex space-x-2"
+          class="flex items-center space-x-2"
         >
+          <p>Please enter a postal code</p>
           <AInput
             :value="''"
             v-model="postalCode"
-            :label="'Postal code'"
             :type="'number'"
+            :error-message="errorMessage"
           />
+          <p class="text-red-700 font-semibold">{{ errorMessage }}</p>
           <AButton
             @click.native="submitPostalCode"
           >
@@ -20,7 +22,7 @@
 
 <script>
 import useVuelidate from '@vuelidate/core'
-import { required, numeric } from '@vuelidate/validators'
+import { required, numeric, minLength, maxLength } from '@vuelidate/validators'
 import AButton from '@/components/atoms/a-button.vue'
 import { mapGetters } from 'vuex'
 import AInput from '@/components/atoms/a-input.vue'
@@ -36,7 +38,8 @@ export default {
   },
   data () {
       return {
-          postalCode: null
+          postalCode: null,
+          errorMessage: ''
       }
   },
   computed: {
@@ -51,14 +54,20 @@ export default {
     return {
       postalCode: {
         required,
-        numeric
+        numeric,
+        maxLength: maxLength(5),
+        minLength: minLength(5)
       }
     }
   },
   methods: {
     async submitPostalCode () {
-      if (this.$v) {
-        return console.log('Form is invalid')
+
+      if (this.v$.postalCode.$invalid) {
+        if (this.v$.postalCode.numeric.$invalid) return this.errorMessage = this.v$.postalCode.numeric.$message
+        if (this.v$.postalCode.required.$invalid) return this.errorMessage = this.v$.postalCode.required.$message
+        if (this.v$.postalCode.maxLength.$invalid) return this.errorMessage = 'Postal code length must be 5'
+        if (this.v$.postalCode.minLength.$invalid) return this.errorMessage = 'Postal code length must be 5'
       }
       await this.$store.dispatch("getCitiesByPostalCode", this.postalCode);
       await this.$store.dispatch("getCurrentWeatherByCityName", this.getCitiesByPostalCode[0]);
