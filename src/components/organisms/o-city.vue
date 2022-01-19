@@ -5,6 +5,7 @@
       <APostalCode 
         :postal-code="postalCode"
         :cities="cities"
+        @a-postal-code::on-back="handleBack"
       />
       <MCurrentWeather 
         :current-weather="currentWeather"
@@ -19,7 +20,7 @@
       />
     </div>
    <div v-else>
-     <p class="text-white">
+     <p class="mb-3 font-semibold">
       Sorry we did not find any city with this postal code      
      </p>
       <AButton

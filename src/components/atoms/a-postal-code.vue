@@ -38,7 +38,7 @@ export default {
   },
   methods: {
       handleBack () {
-          this.$emit('on-back')
+          this.$emit('a-postal-code::on-back')
       },
   }
 }

@@ -45,7 +45,6 @@ export default {
       this.showPostalCodeForm = !this.showPostalCodeForm
     },
     setPostalCodeData (item) {
-      console.log(item)
       this.currentWeather = item.weather
       this.postalCode = item.postalCode
       this.cities = item.cities

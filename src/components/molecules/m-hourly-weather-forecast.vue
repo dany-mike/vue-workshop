@@ -6,7 +6,7 @@
           <hourly-forecast
           :data="chartData"
           :options="chartOptions"
-          class="hourly-forecast-chart"
+          class="hourly-forecast-chart pb-4"
           />
         </div>
       </div>
