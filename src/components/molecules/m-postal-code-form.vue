@@ -1,29 +1,40 @@
 <template>
     <div class="modal flex items-center justify-center">
-        <div class="flex space-x-2">
-            <input 
-                type="number" 
-                class="postal-code bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-500" 
-                placeholder="Your postal code"
-                v-model="postalCode"
-            >
-            <AButton
-              @click.native="submitPostalCode"
-            >
-              Submit
-            </AButton>
-        </div>
+        <form
+          class="flex space-x-2"
+        >
+          <AInput
+            :value="''"
+            v-model="postalCode" 
+            :label="'Enter a postal code'"
+          />
+          <AButton
+            @click.native="submitPostalCode"
+          >
+            Submit
+          </AButton>
+        </form>
     </div>
 </template>
 
 <script>
 import AButton from '@/components/atoms/a-button.vue'
 import { mapGetters } from 'vuex'
+import AInput from '@/components/atoms/a-input.vue'
 
 export default {
+  setup () {
+  },
   name: 'MPostalCodeForm',
   components: {
-      AButton,
+    AButton,
+    AInput
+  },
+  validations () {
+    return {
+      postalCode: { 
+      }
+    }
   },
   data () {
       return {
@@ -43,7 +54,6 @@ export default {
       await this.$store.dispatch("getCitiesByPostalCode", this.postalCode);
       await this.$store.dispatch("getCurrentWeatherByCityName", this.getCitiesByPostalCode[0]);
       await this.$store.dispatch("getForecastByCityName", this.getCitiesByPostalCode[0]);
-      console.log(this.getCitiesByPostalCode[0]);
       await this.$store.dispatch("getDailyForecastByCityNameAndTime", {
         city:  this.getCitiesByPostalCode[0],
         time: '12:00',

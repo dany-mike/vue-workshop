@@ -9,6 +9,9 @@
           class="hourly-forecast-chart pb-4"
           />
         </div>
+        <div class="set-time-container flex justify-center w-full mt-4 pb-4">
+          <p class="text-white">Set time</p> 
+        </div>
       </div>
     </div>
 </template>
