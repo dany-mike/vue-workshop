@@ -6,7 +6,7 @@
           <p>Postal code: {{ postalCode }}</p>
           <ASelect
             :options="cities"
-            :default="'Please choose a city'"
+            :default-value="'Please choose a city'"
           />
           <AButton
             @click.native="handleBack"
@@ -20,6 +20,7 @@
 <script>
 import AButton from '@/components/atoms/a-button.vue'
 import ASelect from '@/components/atoms/a-select.vue'
+
 export default {
   name: 'APostalCode',
   components: {
@@ -39,7 +40,7 @@ export default {
   methods: {
       handleBack () {
           this.$emit('a-postal-code::on-back')
-      },
+      }
   }
 }
 </script>

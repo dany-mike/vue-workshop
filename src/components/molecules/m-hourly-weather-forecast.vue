@@ -10,7 +10,7 @@
           />
         </div>
         <div class="set-time-container flex justify-center w-full mt-4 pb-4">
-          <p class="text-white">Set time</p> 
+          SELECT HERE
         </div>
       </div>
     </div>
@@ -26,6 +26,16 @@ export default {
   },
   data() {
       return {
+        dailyForecastTimes: [
+          "12:00",
+          "15:00",
+          "18:00",
+          "21:00",
+          "00:00",
+          "03:00",
+          "06:00",
+          "09:00"
+        ],
         chartData: {
           labels: this.weatherForecast.list.map(e => {
             return e.dt_txt
