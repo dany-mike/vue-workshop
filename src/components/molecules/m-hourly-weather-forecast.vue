@@ -9,9 +9,6 @@
           class="hourly-forecast-chart pb-4"
           />
         </div>
-        <div class="set-time-container flex justify-center w-full mt-4 pb-4">
-          SELECT HERE
-        </div>
       </div>
     </div>
 </template>
@@ -26,16 +23,7 @@ export default {
   },
   data() {
       return {
-        dailyForecastTimes: [
-          "12:00",
-          "15:00",
-          "18:00",
-          "21:00",
-          "00:00",
-          "03:00",
-          "06:00",
-          "09:00"
-        ],
+        selected: '',
         chartData: {
           labels: this.weatherForecast.list.map(e => {
             return e.dt_txt
