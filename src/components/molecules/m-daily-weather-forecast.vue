@@ -6,7 +6,7 @@
       :key="`${el.dt_txt}`"
       class="daily-forecast px-6 flex justify-between w-full">
         <div>
-          <p class="text-white">{{el.dt_txt}}</p>
+          <p class="text-white">{{getMonth(el)}} {{getFullYear(el)}}, </p>
         </div>
         <div class="text-white">
           <p>{{el.weather[0].description}}</p>
@@ -23,21 +23,15 @@
 
 <script>
 import { mapGetters } from 'vuex'
+import { monthNames } from '@/data/month.js'
+import { dailyForecastTimes } from '@/data/dailyForecastTimes.js'
 
 export default {
   name: 'MDailyWeatherForecast',
   data() {
     return {
-      dailyForecastTimes: [
-        "12:00",
-        "15:00",
-        "18:00",
-        "21:00",
-        "00:00",
-        "03:00",
-        "06:00",
-        "09:00"
-      ],
+      dailyForecastTimes: dailyForecastTimes,
+      monthNames: monthNames,
       selectedTime: this.formattedWeatherForecast[0].dt_txt.substring(11, 16),
     }
   },
@@ -64,6 +58,12 @@ export default {
         time: selected,
       });
       this.selectedTime = selected
+    },
+    getFullYear (el) {
+      return new Date(el.dt_txt).getFullYear()
+    },
+    getMonth(el) {
+      return this.monthNames[new Date(el.dt_txt).getMonth()]
     }
   }
 }
