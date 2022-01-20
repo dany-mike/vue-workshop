@@ -4,10 +4,7 @@
     >
         <div class="flex flex-col justify-center items-center space-y-4 px-8">
           <p>Postal code: {{ postalCode }}</p>
-          <ASelect
-            :options="cities"
-            :default-value="'Please choose a city'"
-          />
+          SELECT HERE
           <AButton
             @click.native="handleBack"
           >
@@ -19,13 +16,11 @@
 
 <script>
 import AButton from '@/components/atoms/a-button.vue'
-import ASelect from '@/components/atoms/a-select.vue'
 
 export default {
   name: 'APostalCode',
   components: {
       AButton,
-      ASelect,
   },
   props: {
       postalCode: {
