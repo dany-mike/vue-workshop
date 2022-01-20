@@ -1,8 +1,10 @@
 <template>
   <select 
     class="a-select py-2 text-white font-semibold  shadow-md focus:outline-none bg-red-500 hover:bg-red-700 rounded"
+    v-model="value"
+    @change="onChange($event)"
   >
-    <option>Please select a city</option>
+    <option>{{ defaultValue }}</option>
     <option
       v-for="(option, index) in options"
       :key="`${option}_${index}`"
@@ -14,13 +16,12 @@
 
 <script>
 export default {
-  name: 'ASelect',
   props:{
     options:{
       type: Array,
       required: true
     },
-    default: {
+    defaultValue: {
       type: String,
       required: false,
       default: null,
@@ -28,9 +29,14 @@ export default {
   },
   data() {
     return {
-      selected: ''
+      value: ''
     };
   },
+  methods: {
+    onChange(event) {
+      console.log(event.target.defaultValue)
+    }
+  }
 }
 
 </script>

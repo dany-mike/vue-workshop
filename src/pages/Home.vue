@@ -5,7 +5,7 @@
       v-if="showPostalCodeForm"
       @m-postal-code-form::on-submit-postal-code="setPostalCodeData"
     />
-    <APostalCode
+    <OCity
       v-if="!showPostalCodeForm"
       :postalCode="postalCode"
       :cities="cities"
@@ -21,14 +21,14 @@
 // @ is an alias to /src
 import AWelcome from '@/components/atoms/a-welcome.vue'
 import MPostalCodeForm from '@/components/molecules/m-postal-code-form'
-import APostalCode from '@/components/atoms/a-postal-code'
+import OCity from '@/components/organisms/o-city'
 
 export default {
   name: 'Home',
   components: {
     AWelcome,
     MPostalCodeForm,
-    APostalCode
+    OCity
   },
   data () {
     return {
@@ -45,7 +45,6 @@ export default {
       this.showPostalCodeForm = !this.showPostalCodeForm
     },
     setPostalCodeData (item) {
-      console.log(item)
       this.currentWeather = item.weather
       this.postalCode = item.postalCode
       this.cities = item.cities

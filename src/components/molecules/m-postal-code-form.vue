@@ -1,33 +1,45 @@
 <template>
     <div class="modal flex items-center justify-center">
-        <div class="flex space-x-2">
-            <input 
-                type="number" 
-                class="postal-code bg-gray-200 appearance-none border-2 border-gray-200 rounded w-full py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-red-500" 
-                placeholder="Your postal code"
-                v-model="postalCode"
-            >
-            <AButton
-              @click.native="submitPostalCode"
-            >
-              Submit
-            </AButton>
+        <div
+          class="flex items-center space-x-2"
+        >
+          <p>Please enter a postal code</p>
+          <AInput
+            :value="''"
+            v-model="postalCode"
+            :type="'number'"
+            :error-message="errorMessage"
+          />
+          <p class="text-red-700 font-semibold">{{ errorMessage }}</p>
+          <AButton
+            @click.native="submitPostalCode"
+          >
+            Submit
+          </AButton>
         </div>
     </div>
 </template>
 
 <script>
+import useVuelidate from '@vuelidate/core'
+import { required, numeric, minLength, maxLength } from '@vuelidate/validators'
 import AButton from '@/components/atoms/a-button.vue'
 import { mapGetters } from 'vuex'
+import AInput from '@/components/atoms/a-input.vue'
 
 export default {
+  setup () {
+    return { v$: useVuelidate() }
+  },
   name: 'MPostalCodeForm',
   components: {
-      AButton,
+    AButton,
+    AInput
   },
   data () {
       return {
-          postalCode: null
+          postalCode: null,
+          errorMessage: ''
       }
   },
   computed: {
@@ -38,17 +50,32 @@ export default {
       getDailyForecast: 'getDailyForecast'
     })
   },
+  validations () {
+    return {
+      postalCode: {
+        required,
+        numeric,
+        maxLength: maxLength(5),
+        minLength: minLength(5)
+      }
+    }
+  },
   methods: {
     async submitPostalCode () {
+
+      if (this.v$.postalCode.$invalid) {
+        if (this.v$.postalCode.numeric.$invalid) return this.errorMessage = this.v$.postalCode.numeric.$message
+        if (this.v$.postalCode.required.$invalid) return this.errorMessage = this.v$.postalCode.required.$message
+        if (this.v$.postalCode.maxLength.$invalid) return this.errorMessage = 'Postal code length must be 5'
+        if (this.v$.postalCode.minLength.$invalid) return this.errorMessage = 'Postal code length must be 5'
+      }
       await this.$store.dispatch("getCitiesByPostalCode", this.postalCode);
       await this.$store.dispatch("getCurrentWeatherByCityName", this.getCitiesByPostalCode[0]);
       await this.$store.dispatch("getForecastByCityName", this.getCitiesByPostalCode[0]);
-      console.log(this.getCitiesByPostalCode[0]);
       await this.$store.dispatch("getDailyForecastByCityNameAndTime", {
         city:  this.getCitiesByPostalCode[0],
         time: '12:00',
       });
-      // filename::event-name
       this.$emit('m-postal-code-form::on-submit-postal-code', {
         postalCode: this.postalCode,
         cities: this.getCitiesByPostalCode,
