@@ -1,18 +1,18 @@
 <template>
   <div class="m-daily-weather-forecast rounded shadow-lg my-2 p-4 m-4 bg-gray-800">
-    <p class="font-bold text-xl p-4 text-white">Daily forecast in {{ currentWeather.name }} at {{ selectedTime }}</p>
+    <p class="font-bold text-xl p-4 text-white">Daily forecast in {{ currentWeather.name }} at {{ getTime(selectedTime) }}</p>
     <div
       v-for="el in dailyWeatherForecast"
       :key="`${el.dt_txt}`"
       class="daily-forecast px-6 flex justify-between w-full">
         <div>
-          <p class="text-white">{{getMonth(el)}} {{getFullYear(el)}}, </p>
+          <p class="text-white">{{getMonth(el)}} {{getDay(el)}} {{getFullYear(el)}}, {{ getTime() }}</p>
         </div>
         <div class="text-white">
           <p>{{el.weather[0].description}}</p>
         </div>
         <div>
-          <p class="text-white">{{el.main.temp}} °C</p>
+          <p class="text-white">{{formattedTemp(el)}} °C</p>
         </div>
     </div>
     <div class="set-time-container flex justify-center w-full mt-4 pb-4">
@@ -25,6 +25,7 @@
 import { mapGetters } from 'vuex'
 import { monthNames } from '@/data/month.js'
 import { dailyForecastTimes } from '@/data/dailyForecastTimes.js'
+import { daysOfMonth } from '@/data/daysOfMonth.js'
 
 export default {
   name: 'MDailyWeatherForecast',
@@ -33,6 +34,8 @@ export default {
       dailyForecastTimes: dailyForecastTimes,
       monthNames: monthNames,
       selectedTime: this.formattedWeatherForecast[0].dt_txt.substring(11, 16),
+      daysOfMonth: daysOfMonth,
+      selected: ''
     }
   },
   computed: {
@@ -62,8 +65,20 @@ export default {
     getFullYear (el) {
       return new Date(el.dt_txt).getFullYear()
     },
+    getDay(el) {
+      return this.daysOfMonth[el.dt_txt.substring(8, 10) - 1]
+    },
     getMonth(el) {
       return this.monthNames[new Date(el.dt_txt).getMonth()]
+    },
+    getTime() {
+      const hour = Number(this.selectedTime.substring(0, 2))
+      const suffix = hour >= 12 ? "PM":"AM";
+      const hours = ((hour + 11) % 12 + 1) + suffix
+      return hours
+    },
+    formattedTemp(el) {
+       return Math.round(el.main.temp)
     }
   }
 }

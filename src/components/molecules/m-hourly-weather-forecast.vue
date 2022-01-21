@@ -15,18 +15,41 @@
 
 <script>
 import HourlyForecast from '@/charts/HourlyForecast.vue'
+import { monthNames } from '@/data/month.js'
+import { dailyForecastTimes } from '@/data/dailyForecastTimes.js'
+import { daysOfMonth } from '@/data/daysOfMonth.js'
 
 export default {
   name: 'MHourlyWeatherForecast',
   components: {
     HourlyForecast,
   },
+  methods: {
+    getTime(el) {
+      const hour = Number(el.dt_txt.substring(11, 13))
+      const suffix = hour >= 12 ? "PM":"AM";
+      const hours = ((hour + 11) % 12 + 1) + suffix
+      return hours
+    },
+    getFullYear (el) {
+      return new Date(el.dt_txt).getFullYear()
+    },
+    getDay(el) {
+      return this.daysOfMonth[el.dt_txt.substring(8, 10) - 1]
+    },
+    // getMonth(el) {
+    //   return this.monthNames[new Date(el.dt_txt).getMonth()]
+    // }
+  },
   data() {
       return {
+        dailyForecastTimes: dailyForecastTimes,
+        monthNames: monthNames,
+        daysOfMonth: daysOfMonth,
         selected: '',
         chartData: {
           labels: this.weatherForecast.list.map(e => {
-            return e.dt_txt
+            return e.dt_txt.substring(0, 10).replaceAll('-', '/') + ' ' + this.getTime(e)
           }),
           datasets: [
             {
