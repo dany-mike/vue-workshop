@@ -1,6 +1,6 @@
 <template>
   <div class="home">
-    <AWelcome msg="Welcome to vue workshop"/>
+    <AWelcome :msg="$t('Welcome to vue workshop')"/>
     <MPostalCodeForm 
       v-if="showPostalCodeForm"
       @m-postal-code-form::on-submit-postal-code="setPostalCodeData"

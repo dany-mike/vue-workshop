@@ -21,12 +21,12 @@
     </div>
    <div v-else>
      <p class="mb-3 font-semibold">
-      Sorry we did not find any city with this postal code      
+      {{ $t('Sorry we did not find any city with this postal code') }}
      </p>
       <AButton
         @click.native="handleBack"
       >
-        Back
+        {{ $t('Back') }}
       </AButton>
     </div>
 </template>

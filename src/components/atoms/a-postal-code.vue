@@ -8,7 +8,7 @@
           <AButton
             @click.native="handleBack"
           >
-            Back
+          {{ $t('Back') }}
           </AButton>
         </div>
   </div>
