@@ -3,18 +3,17 @@
         <div
           class="flex items-center space-x-2"
         >
-          <p>Please enter a postal code</p>
+          <p>{{ $t('Please enter a postal code') }}</p>
           <AInput
             :value="''"
             v-model="postalCode"
             :type="'number'"
-            :error-message="errorMessage"
           />
-          <p class="text-red-700 font-semibold">{{ errorMessage }}</p>
+          <p class="text-red-700 font-semibold">{{ $t(errorMessage) }}</p>
           <AButton
             @click.native="submitPostalCode"
           >
-            Submit
+            {{ $t('Submit') }}          
           </AButton>
         </div>
     </div>

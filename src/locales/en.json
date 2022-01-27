@@ -1,0 +1,19 @@
+{
+  "About": "About",
+  "Back": "Back",
+  "daily_forecast_at_time": "Daily forecast in {daily_forecast} at {time}",
+  "feels_like": "Feels like {feels_like} °C",
+  "hourly_forecast": "Hourly forecast in {hourly_forecast}",
+  "humidity": "Humidity {humidity} %",
+  "max_weather": "max {max_weather}°C",
+  "min_weather": "min {min_weather}°C",
+  "Please enter a postal code": "Please enter a postal code",
+  "postal_code": "Postal code: {postal_code}",
+  "Postal code length must be 5": "Postal code length must be 5",
+  "Sorry we did not find any city with this postal code": "Sorry we did not find any city with this postal code",
+  "Submit": "Submit",
+  "temp": "{temp} °C",
+  "Vue workshop": "Vue workshop",
+  "Welcome to vue workshop": "Welcome to vue workshop",
+  "wind_pace": "Wind pace {wind_pace} m/s"
+}

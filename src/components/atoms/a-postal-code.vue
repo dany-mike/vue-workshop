@@ -3,12 +3,12 @@
       class="m-postal lg:flex lg:justify-center w-full"
     >
         <div class="flex flex-col justify-center items-center space-y-4 px-8">
-          <p>Postal code: {{ postalCode }}</p>
-          <v-select :options="cities" v-model="selected" @input="onChange(selected)"/>
+          <p>{{$t('postal_code', {postal_code: postalCode})}}</p>
+          <p>{{ cities[0] }}</p>
           <AButton
             @click.native="handleBack"
           >
-            Back
+          {{ $t('Back') }}
           </AButton>
         </div>
   </div>
@@ -22,25 +22,25 @@ export default {
   components: {
       AButton,
   },
-    data() {
-      return {
-        selected: '',
-      }
+  data() {
+    return {
+      selected: '',
+    }
   },
   props: {
-      postalCode: {
-          type: String,
-          default: ''
-      },
-      cities: {
-        type: Array,
-        default: () => []
-      },
+    postalCode: {
+        type: String,
+        default: ''
+    },
+    cities: {
+      type: Array,
+      default: () => []
+    },
   },
   methods: {
-      handleBack () {
-          this.$emit('a-postal-code::on-back')
-      }
+    handleBack () {
+        this.$emit('a-postal-code::on-back')
+    }
   }
 }
 </script>

@@ -4,7 +4,11 @@
     class="font-bold text-xl p-4 text-white"
     v-if="currentWeather.name && selectedTime"
     >
-    Daily forecast in {{ currentWeather.name }} at {{ getTime }}
+    {{ $t('daily_forecast_at_time', {
+      daily_forecast: currentWeather.name, 
+      time: getTime
+    }) 
+    }}
     </p>
     <div
       v-for="el in dailyWeatherForecast"
@@ -17,10 +21,10 @@
           <p>{{el.weather[0].description}}</p>
         </div>
         <div v-if="el.main.temp">
-          <p class="text-white">{{formattedTemp(el)}} °C</p>
+          <p class="text-white">{{ $t('temp', {temp: formattedTemp(el) }) }}</p>
         </div>
     </div>
-    <div class="set-time-container flex justify-center w-full mt-4 pb-4">
+    <div class="set-time-container flex w-full mt-4 pb-4 px-6">
       <v-select class="bg-white" v-model="selected" @input="onChange(selected)" :options="dailyForecastTimes" />
     </div>
   </div>
@@ -49,7 +53,7 @@ export default {
       dailyWeatherForecast: 'getDailyForecast'
     }),
     getTime() {
-      const hour = Number(this.selectedTime.substring(0, 2))
+      const hour = this.selectedTime ? Number(this.selectedTime.substring(0, 2)) : '';
       const suffix = hour >= 12 ? "PM":"AM";
       const hours = ((hour + 11) % 12 + 1) + suffix
       return hours
