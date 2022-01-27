@@ -1,17 +1,22 @@
 <template>
   <div class="m-daily-weather-forecast rounded shadow-lg my-2 p-4 m-4 bg-gray-800">
-    <p class="font-bold text-xl p-4 text-white">Daily forecast in {{ currentWeather.name }} at {{ getTime(selectedTime) }}</p>
+    <p 
+    class="font-bold text-xl p-4 text-white"
+    v-if="currentWeather.name && selectedTime"
+    >
+    Daily forecast in {{ currentWeather.name }} at {{ getTime }}
+    </p>
     <div
       v-for="el in dailyWeatherForecast"
       :key="`${el.dt_txt}`"
       class="daily-forecast px-6 flex justify-between w-full">
-        <div>
-          <p class="text-white">{{getMonth(el)}} {{getDay(el)}} {{getFullYear(el)}}, {{ getTime() }}</p>
+        <div v-if="el.dt_txt">
+          <p class="text-white">{{getMonth(el)}} {{getDay(el)}} {{getFullYear(el)}}, {{ getTime }}</p>
         </div>
-        <div class="text-white">
+        <div class="text-white" v-if="el.weather[0].description">
           <p>{{el.weather[0].description}}</p>
         </div>
-        <div>
+        <div v-if="el.main.temp">
           <p class="text-white">{{formattedTemp(el)}} °C</p>
         </div>
     </div>
@@ -42,7 +47,13 @@ export default {
     ...mapGetters({
       getCitiesByPostalCode: 'getCities',
       dailyWeatherForecast: 'getDailyForecast'
-    })
+    }),
+    getTime() {
+      const hour = Number(this.selectedTime.substring(0, 2))
+      const suffix = hour >= 12 ? "PM":"AM";
+      const hours = ((hour + 11) % 12 + 1) + suffix
+      return hours
+    },
   },
   props: {
       currentWeather : {
@@ -70,12 +81,6 @@ export default {
     },
     getMonth(el) {
       return this.monthNames[new Date(el.dt_txt).getMonth()]
-    },
-    getTime() {
-      const hour = Number(this.selectedTime.substring(0, 2))
-      const suffix = hour >= 12 ? "PM":"AM";
-      const hours = ((hour + 11) % 12 + 1) + suffix
-      return hours
     },
     formattedTemp(el) {
        return Math.round(el.main.temp)
