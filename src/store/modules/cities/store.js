@@ -7,12 +7,12 @@ export const state = {
 
 export const mutations = {
   [types.GET_CITIES](state, cities) {
-    state.cities = cities;
+    state.cities = cities.map(city => city.replace(/[0-9]/g, ''));
   }
 };
 
 const getters = {
-  getCities: (state) => state.cities,
+  getCities: (state) => state.cities
 };
 
 export default {
