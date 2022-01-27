@@ -14,7 +14,7 @@
         :current-weather="currentWeather"
         :formatted-weather-forecast="formattedWeatherForecast"
       />
-      <MHourlyWeatherForecast 
+     <MHourlyWeatherForecast 
         :weather-forecast="weatherForecast"
         :current-weather="currentWeather"
       />

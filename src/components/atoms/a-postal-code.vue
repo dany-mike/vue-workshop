@@ -40,10 +40,7 @@ export default {
   methods: {
       handleBack () {
           this.$emit('a-postal-code::on-back')
-      },
-      // async onChange (selected) {
-      //   await this.$store.dispatch("getCurrentWeatherByCityName", selected);
-      // }
+      }
   }
 }
 </script>
