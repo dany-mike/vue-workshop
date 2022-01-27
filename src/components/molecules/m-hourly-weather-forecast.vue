@@ -1,7 +1,7 @@
 <template>
     <div class="m-hourly-weather-forecast w-full justify-center items-center">
       <div class="rounded shadow-lg my-2 m-4 bg-gray-800">
-        <p class="font-bold text-xl text-white p-4">{{$t('hourly_forecast', {hourly_forecast: currentWeather.name})}}</p>
+        <p class="font-bold text-xl text-white p-4">{{$t('hourly_forecast', {hourly_forecast: currentWeather.name})}} {{$t('in °C')}}</p>
         <div class="chart-container flex justify-center w-full">
           <hourly-forecast
           :data="chartData"
