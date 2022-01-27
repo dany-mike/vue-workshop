@@ -31,11 +31,9 @@ export default {
     this.$emit('input', event.target.value)
   },
   computed: {
-
     name() {
       return this.label.toLowerCase().replace(/\s/g, '-') ;
     },
-
     model: {
       get() {
         return this.value;

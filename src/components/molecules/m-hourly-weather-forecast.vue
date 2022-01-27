@@ -1,7 +1,7 @@
 <template>
     <div class="m-hourly-weather-forecast w-full justify-center items-center">
       <div class="rounded shadow-lg my-2 m-4 bg-gray-800">
-        <p class="font-bold text-xl text-white p-4">Hourly forecast in {{ currentWeather.name }}</p>
+        <p class="font-bold text-xl text-white p-4">{{$t('hourly_forecast', {hourly_forecast: currentWeather.name})}}</p>
         <div class="chart-container flex justify-center w-full">
           <hourly-forecast
           :data="chartData"
@@ -36,10 +36,7 @@ export default {
     },
     getDay(el) {
       return this.daysOfMonth[el.dt_txt.substring(8, 10) - 1]
-    },
-    // getMonth(el) {
-    //   return this.monthNames[new Date(el.dt_txt).getMonth()]
-    // }
+    }
   },
   data() {
       return {

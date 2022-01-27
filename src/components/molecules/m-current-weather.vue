@@ -5,30 +5,29 @@
     </div>
       <div class="p-2">
         <div v-if="currentWeather.name" class="font-bold text-2xl text-white mb-2">{{ currentWeather.name }}</div>
-        <div v-if="currentWeather.main.temp" class="font-bold text-xl text-white mb-2">{{ formattedTemp(currentWeather.main.temp) }}°C</div>
+        <div v-if="currentWeather.main.temp" class="font-bold text-xl text-white mb-2">{{ $t('temp', {temp: formattedTemp(currentWeather.main.temp) }) }}</div>
          <p class="text-white font-semibold text-lg mb-4" v-if="currentWeather.main">
           <span v-if="currentWeather.main.temp_min"> 
-            min {{ currentWeather.main.temp_min }} °C
+            {{ $t('min_weather', {min_weather: formattedTemp(currentWeather.main.temp_min) }) }}
           </span> 
           | 
           <span v-if="currentWeather.main.temp_max"> 
-            max {{ currentWeather.main.temp_max }} °C
+            {{ $t('max_weather', {max_weather: formattedTemp(currentWeather.main.temp_max) }) }}
           </span>
         </p>
         <p class="text-white text-base" v-if="currentWeather.main">
          <span v-if="currentWeather.main.feels_like">
-           Feels like {{ formattedTemp(currentWeather.main.feels_like) }}°C
+            {{ $t('feels_like', {feels_like: formattedTemp(currentWeather.main.feels_like) }) }}
         </span> 
          <span v-if="currentWeather.weather[0].description">
-           {{ currentWeather.weather[0].description }}. 
+           {{ currentWeather.weather[0].description }}
         </span>
         </p>
-        
         <p class="text-base text-white" v-if="currentWeather.wind.speed">
-          Wind pace {{ currentWeather.wind.speed }} m/s
+          {{ $t('wind_pace', { wind_pace: formattedTemp(currentWeather.wind.speed) }) }}
         </p>
         <p class="text-base text-white" v-if="currentWeather.main.humidity">
-          Humidity {{ currentWeather.main.humidity }}%
+          {{ $t('humidity', { humidity: formattedTemp(currentWeather.main.humidity) }) }}
         </p>
       </div>
   </div>
