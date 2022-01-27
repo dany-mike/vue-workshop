@@ -66,7 +66,7 @@ export default {
       },
       formattedWeatherForecast: {
         type: Array,
-        default: () => {}
+        default: () => []
       },
   },
   methods: {
