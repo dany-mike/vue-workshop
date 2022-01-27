@@ -1,34 +1,19 @@
 <template>
-    <form @submit.prevent="submit" class="vld-parent" ref="formContainer">
-        <!-- your form inputs goes here-->
-        <label><input type="checkbox" v-model="fullPage">Full page?</label>
-        <button type="submit">Login</button>
-    </form>
+  <div class="about" ref="homeCont">
+    <h1>This is an about page</h1>
+  </div>
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-        fullPage: false
+  mounted() {
+  let homeCont = this.$refs.homeCont
+  this.$loading.show(
+    {
+      container: homeCont,
+      loader: this.loader,
     }
-  },
-  methods: {
-    submit() {
-        let loader = this.$loading.show({
-          // Optional parameters
-          container: this.fullPage ? null : this.$refs.formContainer,
-          canCancel: true,
-          onCancel: this.onCancel,
-        });
-        // simulate AJAX
-        setTimeout(() => {
-          loader.hide()
-        },5000)                 
-    },
-    onCancel() {
-      console.log("User cancelled the loader.")
-    }
+  );
   }
 }
 </script>
