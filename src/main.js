@@ -22,7 +22,6 @@ Vue.component('l-marker', LMarker);
 Vue.use(VueCompositionAPI)
 Vue.use(VueLoading)
 
-
 new Vue({
   router,
   store,
