@@ -6,6 +6,7 @@
   "hourly_forecast": "Hourly forecast in {hourly_forecast}",
   "humidity": "Humidity {humidity} %",
   "in °C": "in °C",
+  "Map": "Map",
   "max_weather": "max {max_weather}°C",
   "min_weather": "min {min_weather}°C",
   "Please enter a postal code": "Please enter a postal code",
