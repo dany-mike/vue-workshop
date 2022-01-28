@@ -1,6 +1,7 @@
 {
   "About": "About",
   "Back": "Back",
+  "Click on the map to get the weather": "Click on the map to get the weather",
   "daily_forecast_at_time": "Daily forecast in {daily_forecast} at {time}",
   "feels_like": "Feels like {feels_like} °C",
   "hourly_forecast": "Hourly forecast in {hourly_forecast}",
