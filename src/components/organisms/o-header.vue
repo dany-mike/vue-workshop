@@ -25,7 +25,10 @@
         "
         >
           <router-link :to="'/about'" class="block mt-4 lg:inline-block lg:mt-0 text-white-200 lg:ml-auto">
-            <p class="text-white text-xl font-bold">{{ $t('About') }}</p>          
+            <p class="text-white text-xl font-bold">{{ $t('About') }}</p>
+          </router-link>
+          <router-link :to="'/map'" class="block mt-4 lg:inline-block lg:mt-0 text-white-200 lg:ml-auto">
+            <p class="text-white text-xl font-bold">{{ $t('Map') }}</p>
           </router-link>
         </div>
       </div>
