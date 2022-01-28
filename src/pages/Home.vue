@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home" ref="homeContainer">
     <AWelcome :msg="$t('Welcome to vue workshop')"/>
     <MPostalCodeForm 
       v-if="showPostalCodeForm"
@@ -18,7 +18,6 @@
 </template>
 
 <script>
-// @ is an alias to /src
 import AWelcome from '@/components/atoms/a-welcome.vue'
 import MPostalCodeForm from '@/components/molecules/m-postal-code-form'
 import OCity from '@/components/organisms/o-city'

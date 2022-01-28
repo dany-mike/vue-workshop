@@ -61,13 +61,21 @@ export default {
   },
   methods: {
     async submitPostalCode () {
-
       if (this.v$.postalCode.$invalid) {
         if (this.v$.postalCode.numeric.$invalid) return this.errorMessage = this.v$.postalCode.numeric.$message
         if (this.v$.postalCode.required.$invalid) return this.errorMessage = this.v$.postalCode.required.$message
         if (this.v$.postalCode.maxLength.$invalid) return this.errorMessage = 'Postal code length must be 5'
         if (this.v$.postalCode.minLength.$invalid) return this.errorMessage = 'Postal code length must be 5'
       }
+
+      let homeContainer = this.$refs.homeContainer
+
+      let loader = this.$loading.show(
+        {
+          container: homeContainer,
+        }
+      );
+
       await this.$store.dispatch("getCitiesByPostalCode", this.postalCode);
       await this.$store.dispatch("getCurrentWeatherByCityName", this.getCitiesByPostalCode[0]);
       await this.$store.dispatch("getForecastByCityName", this.getCitiesByPostalCode[0]);
@@ -83,6 +91,7 @@ export default {
         formattedForecast: this.getDailyForecast
       });
       this.togglePostalCode();
+      loader.hide();
     },
     togglePostalCode () {
       this.showPostalCodeForm = !this.showPostalCodeForm
