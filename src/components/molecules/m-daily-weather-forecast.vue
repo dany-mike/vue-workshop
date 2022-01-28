@@ -10,6 +10,11 @@
     }) 
     }}
     </p>
+    <p 
+    v-else
+    class="font-bold text-xl p-4 text-white">
+    {{$t('select_a_time', {city: currentWeather.name})}}
+    </p>
     <div
       v-for="el in dailyWeatherForecast"
       :key="`${el.dt_txt}`"
