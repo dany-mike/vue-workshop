@@ -1,8 +1,10 @@
 <template>
-  <l-map style="height: 500px" :zoom="zoom" :center="center">
+  <l-map style="height: 500px" :zoom="zoom" :center="center" @click="addMarker">
     <l-tile-layer :url="url" :attribution="attribution"></l-tile-layer>
     <l-marker 
-    :lat-lng="markerLatLng"
+    v-for="(marker, index) in markersLatLng"
+    :key="index"
+    :lat-lng="marker"
     :icon="markerIcon"
     ></l-marker>
   </l-map>
@@ -25,11 +27,18 @@ export default {
       url: 'https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png',
       attribution:'&copy; <a target="_blank" href="http://osm.org/copyright">OpenStreetMap</a> contributors',
       zoom: 15,
-      center: [51.505, -0.159],
-      markerLatLng: [51.504, -0.159],
+      center: L.latLng(51.505, -0.159),
+      markersLatLng: [L.latLng(51.504, -0.159)],
       markerIcon: myMarkerIcon
     };
+  },
+  methods: {
+    addMarker(event) {
+      this.markersLatLng = [];
+      this.markersLatLng.push(event.latlng);
+    }
   }
+
 }
 </script>
 
