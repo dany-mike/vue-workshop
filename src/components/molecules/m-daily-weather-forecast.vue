@@ -40,6 +40,9 @@ import { mapGetters } from 'vuex'
 import { monthNames } from '@/data/month.js'
 import { dailyForecastTimes } from '@/data/dailyForecastTimes.js'
 import { daysOfMonth } from '@/data/daysOfMonth.js'
+import {
+  GET_DAILY_FORECAST_BY_CITY_NAME_AND_TIME,
+} from '@/store/modules/weather/types';
 
 export default {
   name: 'MDailyWeatherForecast',
@@ -76,7 +79,7 @@ export default {
   },
   methods: {
     async onChange(selected) {
-      await this.$store.dispatch("getDailyForecastByCityNameAndTime", {
+      await this.$store.dispatch(`${GET_DAILY_FORECAST_BY_CITY_NAME_AND_TIME}`, {
         city:  this.getCitiesByPostalCode[0],
         time: selected,
       });

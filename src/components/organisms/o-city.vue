@@ -8,6 +8,7 @@
         @a-postal-code::on-back="handleBack"
       />
       <MCurrentWeather 
+        class="p-4 m-4"
         :current-weather="currentWeather"
       />
       <MDailyWeatherForecast

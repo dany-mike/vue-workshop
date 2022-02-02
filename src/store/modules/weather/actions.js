@@ -16,5 +16,10 @@ export default {
     return axios.get(`${process.env.VUE_APP_API_BASE_URL}/weather/forecast/daily/${city}/${time}`).then((response) => {
       commit(types.GET_WEATHER_FORECAST_BY_TIME, response.data);
     }).catch(err => console.log(err));
+  },
+  [types.GET_CURRENT_WEATHER_BY_LAT_AND_LON]({ commit }, { lat, lon }) {
+    return axios.get(`${process.env.VUE_APP_API_BASE_URL}/weather/current/${lat}/${lon}`).then((response) => {
+      commit(types.GET_WEATHER_BY_COORDINATE, response.data);
+    }).catch(err => console.log(err));
   }
 }

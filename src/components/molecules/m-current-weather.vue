@@ -1,5 +1,5 @@
 <template>
-  <div class="m-current-weather rounded overflow-hidden shadow-lg my-2 p-4 m-4 bg-gray-800">
+  <div class="m-current-weather rounded overflow-hidden shadow-lg my-2 bg-gray-800">
     <div class="flex justify-center" v-if="currentWeather.weather[0].icon">
       <img  :src="`http://openweathermap.org/img/w/${currentWeather.weather[0].icon}.png`" alt="icon">
     </div>

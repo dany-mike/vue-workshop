@@ -4,7 +4,8 @@ import actions from './actions'
 export const state = {
   weather: {},
   weatherForecast: {},
-  weatherForecastByCityAndTime: {}
+  weatherForecastByCityAndTime: {},
+  weatherByCoordinates: {}
 };
 
 export const mutations = {
@@ -16,13 +17,17 @@ export const mutations = {
   },
   [types.GET_WEATHER_FORECAST_BY_TIME](state, weatherForecastByCityAndTime) {
     state.weatherForecastByCityAndTime = weatherForecastByCityAndTime;
+  },
+  [types.GET_WEATHER_BY_COORDINATE](state, weatherByCoordinates) {
+    state.weatherByCoordinates = weatherByCoordinates;
   }
 };
 
 const getters = {
   getWeatherByCity: (state) => state.weather,
   getForecastByCityName: (state) => state.weatherForecast,
-  getDailyForecast: (state) => state.weatherForecastByCityAndTime
+  getDailyForecast: (state) => state.weatherForecastByCityAndTime,
+  getWeatherByLatAndLng: (state) => state.weatherByCoordinates
 };
 
 export default {
