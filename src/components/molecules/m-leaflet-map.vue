@@ -12,6 +12,10 @@
 
 <script>
 import L from 'leaflet'
+import { mapGetters } from 'vuex'
+import {
+  GET_CURRENT_WEATHER_BY_LAT_AND_LON
+} from '@/store/modules/weather/types';
 
 export default {
   name: 'MLeafletMap',
@@ -32,10 +36,23 @@ export default {
       markerIcon: myMarkerIcon
     };
   },
+  computed: {
+    ...mapGetters({
+      getWeatherByLatAndLng: 'getWeatherByLatAndLng',
+    })
+  },
   methods: {
-    addMarker(event) {
+    async addMarker(event) {
       this.markersLatLng = [];
-      this.markersLatLng.push(event.latlng);
+      await this.markersLatLng.push(event.latlng);
+      await this.fetchWeatherByCoord(event.latlng)
+    },
+    async fetchWeatherByCoord(latlng) {
+      await this.$store.dispatch(`${GET_CURRENT_WEATHER_BY_LAT_AND_LON}`, {
+        lat: latlng.lat,
+        lon: latlng.lng
+      });
+      this.$emit('m-leaflet-map::on-fetch-weather-by-coord', this.getWeatherByLatAndLng)
     }
   }
 
