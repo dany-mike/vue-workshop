@@ -2,12 +2,12 @@
     <div
       v-if="cities.length !== 0"
     >
-      <APostalCode 
+      <APostalCode
         :postal-code="postalCode"
         :cities="cities"
         @a-postal-code::on-back="handleBack"
       />
-      <MCurrentWeather 
+      <MCurrentWeather
         class="p-4 m-4"
         :current-weather="currentWeather"
       />
