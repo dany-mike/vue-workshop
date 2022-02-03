@@ -48,6 +48,7 @@ export default {
       await this.fetchWeatherByCoord(event.latlng)
     },
     async fetchWeatherByCoord(latlng) {
+      
       let aboutContainer = this.$refs.aboutContainer
 
       let loader = this.$loading.show(
