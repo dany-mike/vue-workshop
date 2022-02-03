@@ -48,11 +48,22 @@ export default {
       await this.fetchWeatherByCoord(event.latlng)
     },
     async fetchWeatherByCoord(latlng) {
+      let aboutContainer = this.$refs.aboutContainer
+
+      let loader = this.$loading.show(
+        {
+          container: aboutContainer,
+        }
+      );
+
       await this.$store.dispatch(`${GET_CURRENT_WEATHER_BY_LAT_AND_LON}`, {
         lat: latlng.lat,
         lon: latlng.lng
       });
-      this.$emit('m-leaflet-map::on-fetch-weather-by-coord', this.getWeatherByLatAndLng)
+
+      loader.hide();
+
+      this.$emit('m-leaflet-map::on-fetch-weather-by-coord', this.getWeatherByLatAndLng);
     }
   }
 
