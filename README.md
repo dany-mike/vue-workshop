@@ -1,24 +1,14 @@
-# front
-
-## Project setup
+# Vue weather app
+## Guide to install Vue weather app locally
+### 1. Clone the project repository
 ```
-yarn install
+git clone https://github.com/dany-mike/vue-workshop.git
 ```
-
-### Compiles and hot-reloads for development
+### 2. Install dependencies
+```
+yarn
+```
+### 3. Start the server
 ```
 yarn serve
 ```
-
-### Compiles and minifies for production
-```
-yarn build
-```
-
-### Lints and fixes files
-```
-yarn lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).

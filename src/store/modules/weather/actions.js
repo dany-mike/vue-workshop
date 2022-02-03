@@ -2,6 +2,7 @@ import * as types from './types'
 import axios from "axios";
 
 export default {
+  // Fetch when I send ajax request
   [types.GET_CURRENT_WEATHER_BY_CITY_NAME]({ commit }, cityName) {
     return axios.get(`${process.env.VUE_APP_API_BASE_URL}/weather/current/${cityName}`).then((response) => {
       commit(types.GET_CURRENT_WEATHER, response.data);
