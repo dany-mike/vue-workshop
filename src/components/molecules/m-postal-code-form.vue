@@ -25,11 +25,11 @@ import { required, numeric, minLength, maxLength } from '@vuelidate/validators'
 import AButton from '@/components/atoms/a-button.vue'
 import { mapGetters } from 'vuex'
 import AInput from '@/components/atoms/a-input.vue'
-import { GET_CITIES_BY_POSTAL_CODE } from '@/store/modules/cities/types';
+import { FETCH_CITIES_BY_POSTAL_CODE } from '@/store/modules/cities/types';
 import {
-  GET_CURRENT_WEATHER_BY_CITY_NAME,
-  GET_FORECAST_BY_CITY_NAME,
-  GET_DAILY_FORECAST_BY_CITY_NAME_AND_TIME,
+  FETCH_CURRENT_WEATHER_BY_CITY_NAME,
+  FETCH_FORECAST_BY_CITY_NAME,
+  FETCH_DAILY_FORECAST_BY_CITY_NAME_AND_TIME,
 } from '@/store/modules/weather/types';
 
 export default {
@@ -82,10 +82,10 @@ export default {
         }
       );
 
-      await this.$store.dispatch(`${GET_CITIES_BY_POSTAL_CODE}`, this.postalCode);
-      await this.$store.dispatch(`${GET_CURRENT_WEATHER_BY_CITY_NAME}`, this.getCitiesByPostalCode[0]);
-      await this.$store.dispatch(`${GET_FORECAST_BY_CITY_NAME}`, this.getCitiesByPostalCode[0]);
-      await this.$store.dispatch(`${GET_DAILY_FORECAST_BY_CITY_NAME_AND_TIME}`, {
+      await this.$store.dispatch(`${FETCH_CITIES_BY_POSTAL_CODE}`, this.postalCode);
+      await this.$store.dispatch(`${FETCH_CURRENT_WEATHER_BY_CITY_NAME}`, this.getCitiesByPostalCode[0]);
+      await this.$store.dispatch(`${FETCH_FORECAST_BY_CITY_NAME}`, this.getCitiesByPostalCode[0]);
+      await this.$store.dispatch(`${FETCH_DAILY_FORECAST_BY_CITY_NAME_AND_TIME}`, {
         city:  this.getCitiesByPostalCode[0],
         time: '12:00',
       });

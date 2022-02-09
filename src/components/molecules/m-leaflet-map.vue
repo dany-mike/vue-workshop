@@ -14,7 +14,7 @@
 import L from 'leaflet'
 import { mapGetters } from 'vuex'
 import {
-  GET_CURRENT_WEATHER_BY_LAT_AND_LON
+  FETCH_CURRENT_WEATHER_BY_LAT_AND_LON
 } from '@/store/modules/weather/types';
 
 export default {
@@ -57,7 +57,7 @@ export default {
         }
       );
 
-      await this.$store.dispatch(`${GET_CURRENT_WEATHER_BY_LAT_AND_LON}`, {
+      await this.$store.dispatch(`${FETCH_CURRENT_WEATHER_BY_LAT_AND_LON}`, {
         lat: latlng.lat,
         lon: latlng.lng
       });
