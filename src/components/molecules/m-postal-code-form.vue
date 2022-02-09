@@ -83,10 +83,10 @@ export default {
       );
 
       await this.$store.dispatch(`${GET_CITIES_BY_POSTAL_CODE}`, this.postalCode);
-      await this.$store.dispatch(`${GET_CURRENT_WEATHER_BY_CITY_NAME}`, 'London');
-      await this.$store.dispatch(`${GET_FORECAST_BY_CITY_NAME}`, 'London');
+      await this.$store.dispatch(`${GET_CURRENT_WEATHER_BY_CITY_NAME}`, this.getCitiesByPostalCode[0]);
+      await this.$store.dispatch(`${GET_FORECAST_BY_CITY_NAME}`, this.getCitiesByPostalCode[0]);
       await this.$store.dispatch(`${GET_DAILY_FORECAST_BY_CITY_NAME_AND_TIME}`, {
-        city:  'London',
+        city:  this.getCitiesByPostalCode[0],
         time: '12:00',
       });
       this.$emit('m-postal-code-form::on-submit-postal-code', {
